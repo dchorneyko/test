@@ -1,0 +1,146 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Billiard Golf</title>
+	<meta name='viewport' content='width=device-width, initial-scale=1'>	
+	<link rel="stylesheet" href="golf-green3.css" />
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile.structure-1.3.2.min.css" /> 
+	<link rel='stylesheet' href='Golf.css' />
+	<script src="jquery-1.10.2.js"></script> 
+	<script src="jquery.mobile-1.3.2.js"></script> 
+	<script src='Options.js'></script>
+	<script src='Holes.js'></script>
+	<script src='Scorecard.js'></script>
+	<script src='Golf.js'></script>
+</head>
+<body>
+
+<div data-role='page' id='options' data-theme='a'>
+	<script type='text/javascript'>
+		$(document).on('pageshow', '#options', function() {
+			app.options.onPageShow();
+		});
+	</script>
+
+	<div data-role='header' data-position='fixed'>
+		<h1>Options</h1>
+		<a href='#info' data-icon='info' data-iconpos='notext' class="ui-btn-right">Info</a>
+	</div>
+
+	<div data-role='content'>
+		<div id='opt-names'>
+			<input type='text' placeholder='Player 1' data-clear-btn='true' value=''>
+			<input type='text' placeholder='Player 2' data-clear-btn='true' value=''>
+			<input type='text' placeholder='Player 3' data-clear-btn='true' value=''>
+			<input type='text' placeholder='Player 4' data-clear-btn='true' value=''>
+		</div>
+	
+		<div id='opt-start-panel' style='height: 40px; text-align: center; margin-top: 10px'>
+			<a href="#" id='opt-start' onclick='app.startGame()' data-inline='true' data-role="button" data-mini='true'>Let's Go!</a>
+		</div>
+		<div id='opt-continue-panel' style='height: 40px; text-align: center;'>
+			<button id='opt-continue'  onclick='window.location = "#holes"' data-inline='true' data-mini='true'>Continue</button>
+		</div>
+		<div id='opt-warn-panel'>
+			Add Players
+		</div>
+	</div>
+</div>
+
+<div data-role='page' id='holes' data-theme='a'>
+	<script type='text/javascript'>
+		$(document).on('pageshow', '#holes', function() {
+			if (app.holes != undefined) {
+				app.holes.onPageShow();
+			}
+			else {
+				window.location = '#';
+			}
+		});
+	</script>
+
+	<div data-role='header' data-position='fixed'>
+		<a href='#options' data-icon='gear'data-iconpos='notext'>Options</a>
+		<h1>Holes</h1>
+		<a href='#info' data-icon='info' data-iconpos='notext'>Info</a>
+	</div>
+
+	<div data-role='content'>
+
+		<div id='holes-top-grid' class="ui-grid-b">
+		    <div class="ui-block-a" id='holes-number-panel'>
+		    	<div class="ui-bar" style="height:60px; text-align:center;">
+		    		Hole<br><div id='holes-num' style='font-size:200%'>1</div>
+					<a href="#" onclick='app.holes.goToHole(app.holes.curHole-1)' id='holes-prev' data-role="button" data-mini='true' data-icon="arrow-l" data-iconpos="notext" data-theme="c" class='hole-prev'>Previous Hole</a>
+					<a href="#" onclick='app.holes.goToHole(app.holes.curHole+1)' id='holes-next' data-role="button" data-mini='true' data-icon="arrow-r" data-iconpos="notext" data-theme="c" class='hole-next'>Next Hole</a>
+		    	</div>
+		    </div>
+		    <div class="ui-block-b"  style="background-color:#00CA19;">
+		    	<div class="ui-bar">
+			    	<img id='holes-rack' class='rack'>
+			    </div>
+		    </div>
+		    <div class="ui-block-c">
+		    	<div class="ui-bar" style="height:60px; text-align:center;">
+		    		Par<br><div id='holes-par' style='font-size:200%'>3</div>
+		    	</div>
+		    </div>
+		</div>
+		
+		<table id='holes-score' width='100%' style='margin-top:15px; border:0'>
+		</table>
+		
+		<div class='ui-grid-b' style='margin-top:10px'>
+		    <div class='ui-block-a' id='holes-submit-panel'>
+				<button id='holes-submit' disabled='' onclick='app.holes.submitHoleScores()' data-mini='true' data-iconpos='notext' data-icon='check'>Submit Hole</button>
+		    </div>
+		    <div class='ui-block-b'>
+		    </div>
+		    <div class='ui-block-c'>
+				<div class='adjustScore'> 
+				    <a href='#' onclick='app.holes.incrementScore(-1)' data-inline='true' data-mini='true' data-role="button" data-iconpos="notext" data-icon='minus'>Remove Stroke</a>
+				    <a href='#' onclick='app.holes.incrementScore(1)' data-inline='true' data-mini='true' data-role="button" data-iconpos="notext" data-icon='plus'>Add Stroke</a>
+				</div>
+		    </div>
+		</div>
+	</div>
+
+	<div data-role='footer' data-position='fixed'>
+		<div class='center-button'>
+			<a href='#scorecard' data-role='button' data-mini='true' data-icon='grid' data-iconpos='left'>Scorecard</a>
+		</div>
+	</div>
+</div>
+
+<div data-role='page' id='scorecard' data-theme='a'>
+	<script type='text/javascript'>
+		$(document).on('pageshow', '#scorecard', function() {
+			if (app.scorecard != undefined) {
+				app.scorecard.onPageShow();
+			}
+			else {
+				window.location = '#';
+			}
+			
+		});
+	</script>
+
+	<div data-role='header' data-position='fixed'>
+		<a href='#options' data-icon='gear'data-iconpos='notext'>Options</a>
+		<h1>Scorecard</h1>
+		<a href='#info' data-icon='info' data-iconpos='notext'>Info</a>
+	</div>
+	
+	<div data-role='content'>
+		<table id='score-table' width='100%'></table> 
+	</div>
+
+	<div data-role='footer' data-position='fixed'>
+		<div class='center-button'>
+			<a href='#holes' data-role='button' data-mini='true' data-icon='bars' data-iconpos='left'>Holes</a>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,120 @@
+table .vertical {
+	-webkit-transform: rotate(270deg);
+	-moz-transform: rotate(270deg);
+	writing-mode:tb-rl;
+	width: 16.7%;
+}
+
+#opt-warn-panel {
+	position: relative; 
+	top: -80px; 
+	line-height: 40px; 
+	height: 40px; 
+	text-align: center; 
+	color: #0A65AB; 
+	background-color: #C1F500;	
+}
+
+#score-table {
+	border-collapse:collapse;
+	margin-top: 10px;
+}
+
+#score-table tbody {
+	border: 1px solid black;
+}
+
+#score-table tr:first-of-type {
+	background: #00CA19; 
+	color: #C1F500;	
+}
+
+#score-table tr:last-of-type {
+	background: #00CA19; 
+	color: #C1F500;	
+	font-size:150%;
+}
+
+#score-table th {
+	text-align: center;
+}
+
+#score-table td {
+	text-align:center;
+	border: 1px solid black;
+}
+
+.blockcenter {
+	display: table; 
+	margin: 0 auto;
+}
+
+.img-holder {
+	position: relative;
+}
+
+.rack {
+	position:relative;
+	left:50%;
+	margin:10px 0 0 -32px;
+}
+
+.rack2 {
+	display: table; 
+	margin: 10px auto;
+	min-height: 60px;
+}
+
+.hole-prev {
+	position:absolute;
+	left:0px;
+	top:18px;
+}
+
+.hole-next {
+	position:absolute;
+	left:80px;
+	top:18px;
+}
+
+.center-button {
+	margin: 0 auto;
+}
+
+#holes-score {
+	border-collapse: collapse;
+	margin-top: 10px;
+}
+
+#holes-score td {
+	text-align: center;
+}
+
+.player-selected {
+	background: #00CA19;	
+	font-size:150%;
+	border: 1px solid #008811;
+}
+
+.player-selected td {
+	padding: 10px 1px;
+}
+
+.player-unselected {
+	background: none;	
+	font-size:100%;
+}
+
+.player-unselected td {
+	padding: 1px;
+}
+
+.adjustScore {
+	position:relative;
+}
+
+.scorecard-header {
+	height: 100px;	
+}
+
+
